@@ -1,27 +1,116 @@
+@import url('../styles/normalize.css');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+  background: #fff;
+  font-family: 'Kanit', sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  body {
+    @apply font-custom
+  }
+
+  .section {
+    @apply pt-5 pb-5;
+  }
+
+  .container {
+    @apply mx-auto px-5;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .heading {
+    @apply font-medium;
+    margin-bottom: 18px;
+    font-size: 26px;
+  }
+
+  .todo__container {
+    @apply flex flex-col items-center;
+  }
+
+  .todo__wrapper {
+    @apply flex items-center gap-x-4 w-full;
+    max-width: 595px;
+    margin-bottom: 30px;
+  }
+
+  .todo__label {
+    @apply relative w-full;
+  }
+
+  .todo__search-input {
+    @apply border border-customPurple w-full px-4 outline-none text-customPurple;
+    height: 38px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    border-radius: 5px;
+  }
+
+  .todo__search-input::placeholder {
+    color: theme("colors.customPurple")
+  }
+
+  .todo__search-input-icon {
+    @apply absolute top-1/2 -translate-y-1/2 right-4;
+    width: 21px;
+    height: 21px;
+  }
+
+  .todo__select {
+    @apply bg-customPurple min-h-10 text-white outline-none p-2;
+    width: 85px;
+    border-radius: 5px;
+  }
+
+  .todo__btn-theme {
+    @apply bg-customPurple p-2;
+    min-width: 38px;
+    min-height: 38px;
+    border-radius: 5px;
+  }
+
+  .todo__btn-theme-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .todo__list {
+    @apply flex flex-col w-full;
+    max-width: 595px;
+  }
+
+  .todo__item {
+    @apply flex items-center;
+    column-gap: 17px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid theme("colors.customPurple");
+  }
+
+  /* .todo__item:nth-child(2n) {
+    border-top: 1px solid theme("colors.customPurple");
+    border-bottom: 1px solid theme("colors.customPurple");
+  } */
+
+  .list__item-input {
+    @apply w-full;
+  }
+
+  .list__item-checkbox:checked + .todo__item-input {
+    text-decoration: line-through;
+  }
+
+  .list__item-wrapper {
+    @apply flex;
+    column-gap: 10px;
   }
 }

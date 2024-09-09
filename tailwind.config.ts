@@ -9,10 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        customPurple: '#6C63FF'
       },
     },
+    fontFamily: {
+      custom: ['Kanit', 'sans-serif']
+    }
   },
   plugins: [],
 };
