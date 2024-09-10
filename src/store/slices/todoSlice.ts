@@ -22,11 +22,30 @@ export const getTodos = createAsyncThunk(
 	}
 );
 
+export const createTodo = createAsyncThunk(
+	'todos/createTodo',
+	async (todo: Todo, { rejectWithValue, dispatch }) => {
+		try {
+			const res = await fetch(`${API_URL.todos}`, {
+				method: 'POST',
+				body: JSON.stringify(todo),
+				headers: {
+					'Content-type': 'application/json'
+				}
+			});
+			if (!res.ok) throw new Error('Todo was not created');
+
+			dispatch(addTodo(todo));
+		} catch (error) {
+			return rejectWithValue(error);
+		}
+	}
+)
+
 export const patchTodo = createAsyncThunk(
 	'todos/patchTodo',
 	async (todo: Todo, { rejectWithValue, dispatch }) => {
 		try {
-			// if (!todo?.title.trim()) return;
 			const res = await fetch(`${API_URL.todos}/${todo.id}`, {
 				method: 'PATCH',
 				body: JSON.stringify(todo),
@@ -63,7 +82,7 @@ export const todoSlice = createSlice({
 	name: 'todos',
 	initialState,
 	reducers: {
-		createTodo: (state, action) => {
+		addTodo: (state, action) => {
 			state.todos.push(action.payload);
 		},
 		changeTodoTitle: (state, action) => {
@@ -97,5 +116,5 @@ export const todoSlice = createSlice({
 	},
 });
 
-export const { createTodo, changeTodoTitle, toggleTodo, removeTodo, removeAllTodos } = todoSlice.actions;
+export const { addTodo, changeTodoTitle, toggleTodo, removeTodo, removeAllTodos } = todoSlice.actions;
 export default todoSlice.reducer

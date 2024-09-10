@@ -28,13 +28,20 @@ body {
   }
 
   .heading {
-    @apply font-medium;
+    @apply font-medium uppercase;
     margin-bottom: 18px;
     font-size: 26px;
+    line-height: 30px;
+  }
+
+  .btn {
+    @apply text-white font-medium bg-customPurple;
+    border-radius: 5px;
   }
 
   .todo__container {
-    @apply flex flex-col items-center;
+    @apply relative flex flex-col items-center;
+    min-height: 200px;
   }
 
   .todo__wrapper {
@@ -72,10 +79,9 @@ body {
   }
 
   .todo__btn-theme {
-    @apply bg-customPurple p-2;
+    @apply p-2;
     min-width: 38px;
     min-height: 38px;
-    border-radius: 5px;
   }
 
   .todo__btn-theme-icon {
@@ -96,21 +102,102 @@ body {
     border-bottom: 1px solid theme("colors.customPurple");
   }
 
-  /* .todo__item:nth-child(2n) {
-    border-top: 1px solid theme("colors.customPurple");
-    border-bottom: 1px solid theme("colors.customPurple");
-  } */
-
   .list__item-input {
     @apply w-full;
   }
 
-  .list__item-checkbox:checked + .todo__item-input {
+  .list__item-checkbox:checked+.todo__item-input {
     text-decoration: line-through;
   }
 
   .list__item-wrapper {
     @apply flex;
     column-gap: 10px;
+  }
+
+  .list__item-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .list__item-icon {
+    width: 100%;
+    height: 100%;
+    fill: #CDCDCD;
+    transition: fill .3s ease, stroke .3s ease;
+  }
+
+  .list__item-icon-checkmark:hover,
+  .list__item-icon-pen:hover {
+    fill: theme("colors.customPurple")
+  }
+
+  .list__item-icon-trash {
+    fill: none;
+    stroke: #CDCDCD;
+  }
+
+  .list__item-icon-trash:hover {
+    stroke: theme("colors.customRed");
+  }
+
+  .list__item-input {
+    @apply border border-customPurple;
+    padding: 11px 16px;
+    border-radius: 5px;
+  }
+
+  .todo__btn-add {
+    @apply absolute right-0 bottom-0 flex items-center justify-center rounded-full;
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal {
+    @apply fixed flex flex-col items-center justify-center;
+    inset: 0;
+  }
+
+  .modal__overlay {
+    @apply absolute inset-0 bg-black opacity-50 z-0;
+  }
+
+  .todo__form {
+    @apply flex flex-col items-center rounded-2xl bg-white z-10;
+    max-width: 500px;
+    width: 100%;
+    min-height: 249px;
+    padding: 18px 30px;
+  }
+
+  .todo__form-heading {
+    @apply text-2xl uppercase;
+    margin-bottom: 25px;
+  }
+
+  .todo__form-input {
+    @apply w-full text-customPurple outline-none border border-customPurple;
+    padding: 11px 16px;
+    margin-bottom: auto;
+    border-radius: 5px;
+  }
+
+  .todo__form-input::placeholder {
+    color: inherit;
+  }
+
+  .todo__form-wrapper {
+    @apply flex justify-between w-full;
+  }
+
+  .todo__form-btn {
+    width: 110px;
+    padding: 10px 22px;
+    font-size: 18px;
+  }
+
+  /* .todo__form-btn-apply {} */
+  .todo__form-btn-cancel {
+    @apply border border-customPurple text-customPurple bg-transparent;
   }
 }

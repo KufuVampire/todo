@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        customPurple: '#6C63FF'
+        customPurple: '#6C63FF',
+        customRed: '#E50000'
       },
     },
     fontFamily: {
