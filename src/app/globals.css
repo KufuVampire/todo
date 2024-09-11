@@ -35,7 +35,7 @@ body {
   }
 
   .btn {
-    @apply text-white font-medium bg-customPurple;
+    @apply outline-none text-white font-medium bg-customPurple;
     border-radius: 5px;
   }
 
@@ -103,7 +103,7 @@ body {
   }
 
   .list__item-input {
-    @apply w-full;
+    @apply w-full outline-none;
   }
 
   .list__item-checkbox:checked+.todo__item-input {

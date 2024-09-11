@@ -5,8 +5,9 @@ import { SortDropdown } from '@/components/SortDropdown/SortDropdown';
 import { TodoList } from '@/components/TodoList/TodoList';
 import { AddTodoButton } from '@/components/AddTodoButton/AddTodoButton';
 import { AddTodoFormModal } from '@/components/AddTodoFormModal/AddTodoForm';
+import { ToggleThemeButton } from '@/components/ToggleThemeButton/ToggleThemeButton';
+import { TodoSearch } from '@/components/TodoSearch/TodoSearch';
 
-import DarkThemeIcon from '@/ui/darkThemeIcon.svg'
 import SearchIcon from '@/ui/searchIcon.svg'
 
 export default function Home() {
@@ -17,13 +18,11 @@ export default function Home() {
         <h2 className='heading todo__heading'>Todo list</h2>
         <div className="todo__wrapper">
           <label className='todo__label'>
-            <input type="text" className='todo__search-input' placeholder='Search...' />
+            <TodoSearch />
             <Image className='todo__search-input-icon' src={SearchIcon} alt='search icon' width={21} height={21} />
           </label>
           <SortDropdown />
-          <button className='btn todo__btn todo__btn-theme'>
-            <Image src={DarkThemeIcon} className='todo__btn-theme-icon' alt='dark theme icon' width={22} height={22} />
-          </button>
+          <ToggleThemeButton />
         </div>
         <TodoList />
         <AddTodoButton />

@@ -2,6 +2,11 @@ import { API_URL } from "@/constants/constants";
 import { Todo, TodoState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+// interface QueryParams {
+// 	search?: string,
+// 	sort?: string,
+// }
+
 const initialState: TodoState = {
 	todos: [],
 	loading: false,
@@ -40,7 +45,7 @@ export const createTodo = createAsyncThunk(
 			return rejectWithValue(error);
 		}
 	}
-)
+);
 
 export const patchTodo = createAsyncThunk(
 	'todos/patchTodo',
@@ -60,7 +65,7 @@ export const patchTodo = createAsyncThunk(
 			return rejectWithValue(error);
 		}
 	}
-)
+);
 
 export const deleteTodoById = createAsyncThunk(
 	'todos/deleteTodoById',
@@ -76,7 +81,7 @@ export const deleteTodoById = createAsyncThunk(
 			return rejectWithValue(error);
 		}
 	}
-)
+);
 
 export const todoSlice = createSlice({
 	name: 'todos',

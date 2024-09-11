@@ -35,7 +35,7 @@ export const TodoItem: FC<ITodoItem> = ({ todo }) => {
 	return (
 		<li className="list__item todo__item">
 			<input type="checkbox" className="list__item-checkbox" checked={checked} onChange={handleChange} />
-			<input type="text" disabled={!isEdited} value={todoValue} onChange={(e) => setTodoValue(e.target.value)} className="list__item-input" />
+			<input type="text" disabled={!isEdited} value={todoValue} onChange={(e) => setTodoValue(e.target.value)} placeholder="Your todo..." className="list__item-input" />
 			<div className="list__item-wrapper">
 				{!isEdited ?
 					<button type="button" onClick={() => setIsEdited(true)} className="list__item-btn">
