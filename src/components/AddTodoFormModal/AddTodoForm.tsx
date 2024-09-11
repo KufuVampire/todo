@@ -1,17 +1,18 @@
 "use client"
-import { ModalContext } from '@/context/modalContext'
-import { useAppDispatch } from '@/hooks/useToolkit';
+import { useAppDispatch, useAppSelector } from '@/hooks/useToolkit';
+import { closeModal } from '@/store/slices/modalSlice';
 import { createTodo } from '@/store/slices/todoSlice';
-import React, { FormEvent, useContext, useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 
 export const AddTodoFormModal = () => {
 	const [title, setTitle] = useState<string>('');
-	const modalContext = useContext(ModalContext);
+
+	const { isOpen } = useAppSelector(state => state.modal);
 	const dispatch = useAppDispatch();
 
 	const close = () => {
 		setTitle('');
-		modalContext?.setIsOpen(false);
+		dispatch(closeModal())
 	}
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -22,18 +23,13 @@ export const AddTodoFormModal = () => {
 		}
 	}
 
-	const closeModal = () => {
-		setTitle('');
-		close();
-	}
-
 	return (
-		<div className={modalContext?.isOpen ? 'modal z-10' : 'modal hidden'}>
+		<div className={isOpen ? 'modal z-10' : 'modal hidden'}>
 			<form className='todo__form' onSubmit={handleSubmit}>
 				<h2 className='heading todo__form-heading'>New todo</h2>
 				<input type="text" className='todo__form-input' placeholder='Input your note...' value={title} onChange={(e) => setTitle(e.target.value)} />
 				<div className="todo__form-wrapper">
-					<button type='button' className='btn todo__form-btn todo__form-btn-cancel' onClick={closeModal}>Cancel</button>
+					<button type='button' className='btn todo__form-btn todo__form-btn-cancel' onClick={close}>Cancel</button>
 					<button type='submit' className='btn todo__form-btn todo__form-btn-apply'>Apply</button>
 				</div>
 			</form>

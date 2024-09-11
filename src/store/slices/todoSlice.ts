@@ -64,7 +64,7 @@ export const patchTodo = createAsyncThunk(
 
 export const deleteTodoById = createAsyncThunk(
 	'todos/deleteTodoById',
-	async (id: number, { rejectWithValue, dispatch }) => {
+	async (id: string, { rejectWithValue, dispatch }) => {
 		try {
 			const res = await fetch(`${API_URL.todos}/${id}`, {
 				method: "DELETE",

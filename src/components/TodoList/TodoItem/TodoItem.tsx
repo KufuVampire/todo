@@ -19,7 +19,10 @@ export const TodoItem: FC<ITodoItem> = ({ todo }) => {
 	const dispatch = useAppDispatch()
 
 	const handleClick = () => {
-		if (!todoValue.trim()) return;
+		if (!todoValue.trim()) {
+			dispatch(deleteTodoById(todo.id));
+			return;
+		};
 		setIsEdited(false);
 		dispatch(patchTodo({ ...todo, title: todoValue }));
 	}
@@ -43,7 +46,7 @@ export const TodoItem: FC<ITodoItem> = ({ todo }) => {
 					</button>
 				}
 				<button type="button" onClick={() => dispatch(deleteTodoById(todo.id))} className="list__item-btn">
-					<Trash classes="list__item-icon list__item-icon-trash"/>
+					<Trash classes="list__item-icon list__item-icon-trash" />
 				</button>
 			</div>
 		</li>
