@@ -4,7 +4,7 @@ import { MantineProvider } from "@mantine/core";
 import Provider from "@/components/Provider/Provider";
 import { Footer, Header, Main } from "@/components";
 
-import '@mantine/core/styles.css';
+import "@/styles/normalize.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

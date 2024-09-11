@@ -147,6 +147,18 @@ body {
     border-radius: 5px;
   }
 
+  .todo__empty {
+    @apply flex flex-col items-center w-full;
+  }
+
+  .todo__empty-image {
+    @apply mb-5;
+  }
+
+  .todo__heading-empty {
+    text-transform: none;
+  }
+
   .todo__btn-add {
     @apply absolute right-0 bottom-0 flex items-center justify-center rounded-full;
     width: 50px;
@@ -199,5 +211,9 @@ body {
   /* .todo__form-btn-apply {} */
   .todo__form-btn-cancel {
     @apply border border-customPurple text-customPurple bg-transparent;
+  }
+
+  .loader {
+    @apply flex justify-center;
   }
 }

@@ -2,11 +2,6 @@ import { API_URL } from "@/constants/constants";
 import { Todo, TodoState } from "@/types/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// interface QueryParams {
-// 	search?: string,
-// 	sort?: string,
-// }
-
 const initialState: TodoState = {
 	todos: [],
 	loading: false,
@@ -112,11 +107,11 @@ export const todoSlice = createSlice({
 			.addCase(getTodos.fulfilled, (state, action) => {
 				state.todos = action.payload;
 				state.loading = false;
-				state.error = null
+				state.error = null;
 			})
 			.addCase(getTodos.rejected, (state, action) => {
 				state.loading = false;
-				state.error = action.payload;
+				state.error = action.payload
 			});
 	},
 });
