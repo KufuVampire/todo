@@ -18,7 +18,8 @@ body {
   }
 
   .section {
-    @apply pt-5 pb-5;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 
   .container {
@@ -35,7 +36,7 @@ body {
   }
 
   .btn {
-    @apply outline-none text-white font-medium bg-customPurple;
+    @apply outline-none text-white font-medium bg-customPurple cursor-pointer;
     border-radius: 5px;
   }
 
@@ -87,6 +88,18 @@ body {
   .todo__btn-theme-icon {
     width: 22px;
     height: 22px;
+  }
+
+  .todo__delete-todos {
+    max-width: 595px;
+    width: 100%;
+    padding: 10px 22px;
+    margin-bottom: 15px;
+    transition: background-color .3s ease;
+  }
+
+  .todo__delete-todos:hover {
+    background-color: rgba(108, 99, 255, .8);
   }
 
   .todo__list {
@@ -168,10 +181,7 @@ body {
   .modal {
     @apply fixed flex flex-col items-center justify-center;
     inset: 0;
-  }
-
-  .modal__overlay {
-    @apply absolute inset-0 bg-black opacity-50 z-0;
+    background-color: rgba(0, 0, 0, .5);
   }
 
   .todo__form {
@@ -215,5 +225,17 @@ body {
 
   .loader {
     @apply flex justify-center;
+  }
+
+  .footer {
+    @apply absolute bottom-0 w-full pt-4 pb-4 border border-t-gray-400;
+  }
+
+  .footer__container {
+    @apply mx-auto px-4 flex items-center justify-center;
+  }
+
+  .footer__link {
+    @apply text-black hover:underline;
   }
 }

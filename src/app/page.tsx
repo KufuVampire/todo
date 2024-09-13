@@ -9,6 +9,7 @@ import { ToggleThemeButton } from '@/components/ToggleThemeButton/ToggleThemeBut
 import { TodoSearch } from '@/components/TodoSearch/TodoSearch';
 
 import SearchIcon from '@/ui/searchIcon.svg'
+import { DeleteTodosButton } from '@/components/DeleteTodosButton/DeleteTodosButton';
 
 export default function Home() {
 
@@ -24,6 +25,7 @@ export default function Home() {
           <SortDropdown />
           <ToggleThemeButton />
         </div>
+        <DeleteTodosButton />
         <TodoList />
         <AddTodoButton />
         <AddTodoFormModal />

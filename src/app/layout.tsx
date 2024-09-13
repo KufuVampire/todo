@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { MantineProvider } from "@mantine/core";
 
 import Provider from "@/components/Provider/Provider";
 import { Footer, Header, Main } from "@/components";
@@ -20,15 +19,13 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className="bg-white">
-        <MantineProvider>
-          <Provider>
-            <Header />
-            <Main>
-              {children}
-            </Main>
-            <Footer />
-          </Provider>
-        </MantineProvider>
+        <Provider>
+          <Header />
+          <Main>
+            {children}
+          </Main>
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

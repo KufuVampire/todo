@@ -1,6 +1,7 @@
 import { API_URL } from "@/constants/constants";
 import { Todo, TodoState } from "@/types/types";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 const initialState: TodoState = {
 	todos: [],
@@ -78,23 +79,42 @@ export const deleteTodoById = createAsyncThunk(
 	}
 );
 
+export const deleteTodos = createAsyncThunk<undefined, void, {state: RootState}>(
+	'todos/deleteTodos',
+	(_, { rejectWithValue, dispatch, getState }) => {
+		try {
+			const todos = getState().todos.todos;
+			todos.forEach(async ({ id }: Todo) => {
+				const res = await fetch(`${API_URL.todos}/${id}`, {
+					method: "DELETE",
+				});
+				if (!res.ok) throw new Error('Something went wrong');
+			});
+
+			dispatch(removeTodos());
+		} catch (error) {
+			return rejectWithValue(error);
+		}
+	}
+)
+
 export const todoSlice = createSlice({
-	name: 'todos',
+	name: '@todos',
 	initialState,
 	reducers: {
-		addTodo: (state, action) => {
+		addTodo: (state, action: PayloadAction<Todo>) => {
 			state.todos.push(action.payload);
 		},
-		changeTodoTitle: (state, action) => {
+		changeTodoTitle: (state, action: PayloadAction<Todo>) => {
 			state.todos = state.todos.map(todo => (todo.id === action.payload.id) ? { ...todo, title: action.payload.title } : todo);
 		},
-		toggleTodo: (state, action) => {
+		toggleTodo: (state, action: PayloadAction<Todo>) => {
 			state.todos = state.todos.map(todo => (todo.id === action.payload.id ? { ...todo, completed: !todo.completed } : todo));
 		},
-		removeTodo: (state, action) => {
+		removeTodo: (state, action: PayloadAction<{ id: string }>) => {
 			state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
 		},
-		removeAllTodos: (state) => {
+		removeTodos: (state) => {
 			state.todos = [];
 		}
 	},
@@ -116,5 +136,5 @@ export const todoSlice = createSlice({
 	},
 });
 
-export const { addTodo, changeTodoTitle, toggleTodo, removeTodo, removeAllTodos } = todoSlice.actions;
+export const { addTodo, changeTodoTitle, toggleTodo, removeTodo, removeTodos } = todoSlice.actions;
 export default todoSlice.reducer
